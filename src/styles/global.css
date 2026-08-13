@@ -1,0 +1,273 @@
+:root {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #30483d;
+  font-synthesis: none;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+}
+button,
+select,
+input {
+  font: inherit;
+}
+button {
+  color: inherit;
+}
+.app-shell {
+  position: relative;
+  width: 720px;
+  height: 160px;
+  user-select: none;
+}
+.loading {
+  display: grid;
+  place-items: end center;
+  padding-bottom: 16px;
+  color: #52705f;
+  font-size: 12px;
+}
+.garden-canvas,
+.garden-canvas canvas {
+  position: absolute;
+  inset: 0;
+  width: 720px;
+  height: 160px;
+}
+.settings-button {
+  position: absolute;
+  z-index: 5;
+  top: 110px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(74, 98, 84, 0.22);
+  border-radius: 50%;
+  background: rgba(251, 247, 225, 0.92);
+  opacity: 0;
+  transition: opacity 0.18s;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(39, 63, 50, 0.16);
+}
+.app-shell:hover .settings-button {
+  opacity: 1;
+}
+.card-anchor {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  bottom: 13px;
+  transform: translateX(-50%);
+}
+.settings-anchor {
+  position: absolute;
+  z-index: 6;
+  right: 43px;
+  bottom: 12px;
+}
+.popover {
+  width: 270px;
+  padding: 8px 10px;
+  border: 2px solid #f2dfaa;
+  border-radius: 14px;
+  background: rgba(255, 251, 229, 0.97);
+  box-shadow:
+    0 8px 24px rgba(36, 58, 46, 0.24),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+}
+.plant-card header {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.plant-card header > span {
+  font-size: 21px;
+}
+.plant-card header div {
+  display: grid;
+}
+.plant-card small {
+  color: #7a917f;
+  text-transform: capitalize;
+  font-size: 11px;
+}
+.meter-row {
+  display: grid;
+  grid-template-columns: 53px 1fr 32px;
+  gap: 5px;
+  align-items: center;
+  margin: 3px 0;
+  font-size: 10px;
+}
+.meter-row b {
+  text-align: right;
+  font-size: 10px;
+  font-weight: 600;
+}
+.meter {
+  height: 7px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #e8e1c6;
+}
+.meter i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+.plant-card footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 6px;
+}
+.popover button {
+  border: 1px solid #d9cfaa;
+  border-radius: 8px;
+  background: #fffaf0;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 10px;
+}
+.popover button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #fff;
+}
+.plant-card .collect {
+  flex-basis: 100%;
+  background: #fff0b8;
+}
+.seed-picker {
+  display: grid;
+  gap: 6px;
+  width: 205px;
+}
+.seed-picker > strong {
+  margin-bottom: 2px;
+}
+.seed-picker button {
+  display: grid;
+  grid-template-columns: 25px 1fr auto;
+  align-items: center;
+  text-align: left;
+}
+.seed-picker button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.settings-panel {
+  width: 225px;
+}
+.settings-panel header,
+.settings-panel label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.settings-panel header {
+  margin-bottom: 6px;
+}
+.settings-panel label {
+  padding: 5px 0;
+  font-size: 12px;
+}
+.settings-panel .icon-button {
+  padding: 1px 7px;
+  font-size: 16px;
+}
+.debug-panel {
+  position: absolute;
+  z-index: 7;
+  left: 8px;
+  bottom: 8px;
+  padding: 4px 7px;
+  border-radius: 7px;
+  background: rgba(38, 57, 47, 0.75);
+  color: white;
+  font-size: 10px;
+}
+.debug-panel div {
+  display: flex;
+  gap: 4px;
+  padding-top: 4px;
+}
+.debug-panel button {
+  border: 0;
+  border-radius: 4px;
+  padding: 3px 5px;
+  font-size: 9px;
+  cursor: pointer;
+}
+.care-effect {
+  position: absolute;
+  z-index: 8;
+  top: 38px;
+  width: 48px;
+  height: 70px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.care-effect i {
+  position: absolute;
+  font-style: normal;
+  animation: care-fall 0.8s ease-in both;
+}
+.care-effect i:nth-child(1) {
+  left: 4px;
+  animation-delay: 0s;
+}
+.care-effect i:nth-child(2) {
+  left: 20px;
+  animation-delay: 0.11s;
+}
+.care-effect i:nth-child(3) {
+  left: 34px;
+  animation-delay: 0.22s;
+}
+.care-effect.fertilize i {
+  animation-name: care-pop;
+}
+@keyframes care-fall {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.75);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(52px) scale(1);
+  }
+}
+@keyframes care-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.5);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-8px) scale(1.15);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
